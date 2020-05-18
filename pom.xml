@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.drippinger</groupId>
     <artifactId>gatling-reporter</artifactId>
     <version>1.0</version>
-    <modules>
-        <module>gatling-reporter-core</module>
-    </modules>
 
     <packaging>pom</packaging>
 
@@ -34,6 +30,12 @@
         </developer>
     </developers>
 
+    <modules>
+        <module>gatling-reporter-core</module>
+        <module>gatling-reporter-mojo</module>
+        <module>gatling-reporter-dynamoDbExporter</module>
+    </modules>
+
     <distributionManagement>
         <repository>
             <id>ossrh</id>
@@ -52,18 +54,75 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <?SORTPOM RESUME?>
 
-        <auto-value.version>1.6.3</auto-value.version>
+        <assertj-core.version>3.15.0</assertj-core.version>
+        <commons-io.version>1.3.2</commons-io.version>
+        <commons-math3.version>3.0</commons-math3.version>
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
-        <junit-jupiter.version>5.4.2</junit-jupiter.version>
-        <junit-platform-engine.version>1.4.0</junit-platform-engine.version>
-        <junit.version>4.12</junit.version>
-        <lombok.version>1.18.8</lombok.version>
+        <junit-jupiter.version>5.6.2</junit-jupiter.version>
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
         <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
+        <maven-plugin-annotations.version>3.6.0</maven-plugin-annotations.version>
+        <maven-plugin-api.version>3.6.3</maven-plugin-api.version>
+        <maven-project.version>2.2.1</maven-project.version>
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+        <simplecsv.version>2.0</simplecsv.version>
         <sortpom-maven-plugin.version>2.10.0</sortpom-maven-plugin.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>de.drippinger</groupId>
+                <artifactId>gatling-reporter-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.quux00.simplecsv</groupId>
+                <artifactId>simplecsv</artifactId>
+                <version>${simplecsv.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-math3</artifactId>
+                <version>${commons-math3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-plugin-api</artifactId>
+                <version>${maven-plugin-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-project</artifactId>
+                <version>${maven-project.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugin-tools</groupId>
+                <artifactId>maven-plugin-annotations</artifactId>
+                <version>${maven-plugin-annotations.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj-core.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
@@ -71,15 +130,8 @@
                 <groupId>com.github.ekryd.sortpom</groupId>
                 <artifactId>sortpom-maven-plugin</artifactId>
                 <version>${sortpom-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
                 <configuration>
+                    <predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
                     <nrOfIndentSpace>4</nrOfIndentSpace>
                     <sortDependencies>groupId,artifactId</sortDependencies>
                     <sortPlugins>groupId,artifactId</sortPlugins>
@@ -89,6 +141,14 @@
                     <lineSeparator>\n</lineSeparator>
                     <createBackupFile>false</createBackupFile>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                        <phase>test</phase>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <artifactId>maven-deploy-plugin</artifactId>
@@ -96,10 +156,10 @@
                 <executions>
                     <execution>
                         <id>default-deploy</id>
-                        <phase>deploy</phase>
                         <goals>
                             <goal>deploy</goal>
                         </goals>
+                        <phase>deploy</phase>
                     </execution>
                 </executions>
             </plugin>
@@ -107,6 +167,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.0.1</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadoc</id>
@@ -115,21 +178,16 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.6.0</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.5.3</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.maven.scm</groupId>
-                        <artifactId>maven-scm-provider-gitexe</artifactId>
-                        <version>1.11.1</version>
-                    </dependency>
-                </dependencies>
                 <configuration>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <tagNameFormat>fakegen-@{project.version}</tagNameFormat>
@@ -138,6 +196,13 @@
                     <mavenExecutorId>forked-path</mavenExecutorId>
                     <arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.scm</groupId>
+                        <artifactId>maven-scm-provider-gitexe</artifactId>
+                        <version>1.11.1</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

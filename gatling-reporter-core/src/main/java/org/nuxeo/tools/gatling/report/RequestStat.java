@@ -175,4 +175,60 @@ public class RequestStat {
                 simulation, scenario, maxUsers, request, start, startDate, duration, end, count, successCount,
                 errorCount, min, p50, p90, p95, p99, max, avg, stddev, rps);
     }
+
+    public String getSimulation() {
+        return simulation;
+    }
+
+    public String getScenario() {
+        return scenario;
+    }
+
+    public String getRequest() {
+        return request;
+    }
+
+    public long getSuccessCount() {
+        return successCount;
+    }
+
+    public long getErrorCount() {
+        return errorCount;
+    }
+
+    public long getMin() {
+        return min;
+    }
+
+    public long getMax() {
+        return max;
+    }
+
+    public long getStddev() {
+        return stddev;
+    }
+
+    public long getP50() {
+        return p50;
+    }
+
+    public long getP90() {
+        return p90;
+    }
+
+    public long getP95() {
+        return p95;
+    }
+
+    public long getP99() {
+        return p99;
+    }
+
+    public double getRps() {
+        return rps;
+    }
+
+    public double getAvg() {
+        return avg;
+    }
 }
