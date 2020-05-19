@@ -37,6 +37,13 @@
         <module>gatling-reporter-csv-exporter</module>
     </modules>
 
+    <scm>
+        <connection>scm:git:git@github.com:DennisRippinger/gatling-reporter.git</connection>
+        <developerConnection>scm:git:git@github.com:DennisRippinger/gatling-reporter.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/DennisRippinger/gatling-reporter</url>
+    </scm>
+
     <distributionManagement>
         <repository>
             <id>ossrh</id>
