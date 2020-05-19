@@ -25,21 +25,21 @@ import java.util.Objects;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestParser {
-    protected static final String SIM_SMALL_V2_1 = "./simulation-small.log";
+    protected static final String SIM_SMALL_V2_1 = "/simulation-small.log";
 
-    protected static final String SIM_V2_3 = "./simulation-v2.3.log";
+    protected static final String SIM_V2_3 = "/simulation-v2.3.log";
 
-    protected static final String SIM_SMALL_V3 = "./simulation-small-v3.log";
+    protected static final String SIM_SMALL_V3 = "/simulation-small-v3.log";
 
-    protected static final String SIM_SMALL_V3_2 = "./simulation-small-v3.2.log";
+    protected static final String SIM_SMALL_V3_2 = "/simulation-small-v3.2.log";
 
-    protected static final String SIM_SMALL_V3_3 = "./simulation-small-v3.3.log";
+    protected static final String SIM_SMALL_V3_3 = "/simulation-small-v3.3.log";
 
-    protected static final String SIM_SMALL_V3_3_1 = "./simulation-v3.3.1.log";
+    protected static final String SIM_SMALL_V3_3_1 = "/simulation-v3.3.1.log";
 
     @Test
     public void parseSimpleSimulationVersion21() throws Exception {
-        SimulationContext ret = ParserFactory.getParser(getRessourceFile(SIM_SMALL_V2_1)).parse();
+        SimulationContext ret = ParserFactory.getParser(getResourceFile(SIM_SMALL_V2_1)).parse();
         assertThat(ret.getSimulationName()).isEqualTo("sim80reindexall");
         assertThat(ret.getSimStat().getCount()).isEqualTo(2);
         assertThat(ret.toString()).contains("_all");
@@ -47,7 +47,7 @@ public class TestParser {
 
     @Test
     public void parseSimulationVersion23() throws Exception {
-        SimulationContext ret = ParserFactory.getParser(getRessourceFile(SIM_V2_3)).parse();
+        SimulationContext ret = ParserFactory.getParser(getResourceFile(SIM_V2_3)).parse();
         // System.out.println(ret);
         assertThat(ret.getSimulationName()).isEqualTo("sim20createdocuments");
         assertThat(ret.getSimStat().getCount()).isEqualTo(1000);
@@ -56,7 +56,7 @@ public class TestParser {
 
     @Test
     public void parseSimpleSimulationVersion3() throws Exception {
-        SimulationContext ret = ParserFactory.getParser(getRessourceFile(SIM_SMALL_V3)).parse();
+        SimulationContext ret = ParserFactory.getParser(getResourceFile(SIM_SMALL_V3)).parse();
         // System.out.println(ret);
         assertThat(ret.getSimulationName()).isEqualTo("sim80reindexall");
         assertThat(ret.getSimStat().getCount()).isEqualTo(2);
@@ -65,7 +65,7 @@ public class TestParser {
 
     @Test
     public void parseSimpleSimulationVersion32Small() throws Exception {
-        SimulationContext ret = ParserFactory.getParser(getRessourceFile(SIM_SMALL_V3_2)).parse();
+        SimulationContext ret = ParserFactory.getParser(getResourceFile(SIM_SMALL_V3_2)).parse();
         // System.out.println(ret);
         assertThat(ret.getSimulationName()).isEqualTo("sim80reindexall");
         assertThat(ret.getSimStat().getCount()).isEqualTo(2);
@@ -74,7 +74,7 @@ public class TestParser {
 
     @Test
     public void parseSimpleSimulationVersion33Small() throws Exception {
-        SimulationContext ret = ParserFactory.getParser(getRessourceFile(SIM_SMALL_V3_3)).parse();
+        SimulationContext ret = ParserFactory.getParser(getResourceFile(SIM_SMALL_V3_3)).parse();
         // System.out.println(ret);
         assertThat(ret.getSimulationName()).isEqualTo("sim80reindexall");
         assertThat(ret.getSimStat().getCount()).isEqualTo(2);
@@ -83,19 +83,18 @@ public class TestParser {
 
     @Test
     public void parseSimpleSimulationVersion331() throws Exception {
-        SimulationContext ret = ParserFactory.getParser(getRessourceFile(SIM_SMALL_V3_3_1)).parse();
+        SimulationContext ret = ParserFactory.getParser(getResourceFile(SIM_SMALL_V3_3_1)).parse();
         // System.out.println(ret);
         assertThat(ret.getSimulationName()).isEqualTo("Simulation");
         assertThat(ret.getSimStat().getCount()).isEqualTo(40);
         assertThat(ret.toString()).contains("_all");
     }
 
-    protected File getRessourceFile(String filename) throws FileNotFoundException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        if (classLoader.getResource(filename) == null) {
+    protected File getResourceFile(String filename) throws FileNotFoundException {
+        if (getClass().getResource(filename) == null) {
             throw new FileNotFoundException(filename);
         }
-        return new File(Objects.requireNonNull(classLoader.getResource(filename)).getFile());
+        return new File(Objects.requireNonNull(getClass().getResource(filename)).getFile());
     }
 
 }
