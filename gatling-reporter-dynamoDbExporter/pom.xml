@@ -6,7 +6,7 @@
     <parent>
         <groupId>de.drippinger</groupId>
         <artifactId>gatling-reporter-parent</artifactId>
-        <version>1.0</version>
+        <version>0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>gatling-reporter-dynamoDbExporter</artifactId>
