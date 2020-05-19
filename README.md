@@ -1,4 +1,5 @@
 # Gatling-Reporter
+![Java CI with Maven](https://github.com/DennisRippinger/gatling-reporter/workflows/Java%20CI%20with%20Maven/badge.svg)
 
 Gatling Reporter is a maven plugin that parses the Gatling `simulation.log` file and transforms it into reportable data.
 You get _basically_ the same data as from an HTML report, but can export the data into a persistent data storage
