@@ -16,9 +16,10 @@
 
 package org.nuxeo.tools.gatling.report;
 
-import java.io.*;
-import java.net.*;
-import java.util.zip.GZIPInputStream;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 
 public class Utils {
 
