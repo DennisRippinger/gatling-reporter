@@ -25,19 +25,17 @@ import java.util.Objects;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestParser {
-    protected static final String SIM_SMALL_V2_1 = "simulation-small.log";
+    protected static final String SIM_SMALL_V2_1 = "./simulation-small.log";
 
-    protected static final String SIM_V2_3 = "simulation-v2.3.log";
+    protected static final String SIM_V2_3 = "./simulation-v2.3.log";
 
-    protected static final String SIM_SMALL_V3 = "simulation-small-v3.log";
+    protected static final String SIM_SMALL_V3 = "./simulation-small-v3.log";
 
-    protected static final String SIM_SMALL_V3_2 = "simulation-small-v3.2.log";
+    protected static final String SIM_SMALL_V3_2 = "./simulation-small-v3.2.log";
 
-    protected static final String SIM_SMALL_V3_3 = "simulation-small-v3.3.log";
+    protected static final String SIM_SMALL_V3_3 = "./simulation-small-v3.3.log";
 
-    protected static final String SIM_SMALL_V3_3_1 = "simulation-v3.3.1.log";
-
-    protected static final String SIM_V3_2_GZ = "simulation-v3.2.log.gz";
+    protected static final String SIM_SMALL_V3_3_1 = "./simulation-v3.3.1.log";
 
     @Test
     public void parseSimpleSimulationVersion21() throws Exception {
