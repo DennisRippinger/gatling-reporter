@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>de.drippinger</groupId>
+        <groupId>de.drippinger.gatling</groupId>
         <artifactId>gatling-reporter-parent</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
@@ -36,7 +36,7 @@
             <artifactId>aws-java-sdk-dynamodb</artifactId>
         </dependency>
         <dependency>
-            <groupId>de.drippinger</groupId>
+            <groupId>de.drippinger.gatling</groupId>
             <artifactId>gatling-reporter-core</artifactId>
         </dependency>
         <dependency>
