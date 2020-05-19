@@ -36,16 +36,9 @@ public abstract class SimulationParser {
 
     protected final File file;
 
-    protected final Float apdexT;
-
-    public SimulationParser(File file, Float apdexT) {
-        this.file = file;
-        this.apdexT = apdexT;
-    }
 
     public SimulationParser(File file) {
         this.file = file;
-        this.apdexT = null;
     }
 
     public SimulationContext parse() throws IOException {

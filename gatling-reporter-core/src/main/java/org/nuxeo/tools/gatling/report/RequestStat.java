@@ -44,13 +44,33 @@ public class RequestStat {
 
     protected String startDate;
 
-    protected long start, end;
+    protected long start;
 
-    protected long count, successCount, errorCount;
+    protected long end;
 
-    protected long min, max, stddev, p50, p90, p95, p99;
+    protected long count;
 
-    protected double rps, avg;
+    protected long successCount;
+
+    protected long errorCount;
+
+    protected long min;
+
+    protected long max;
+
+    protected long stddev;
+
+    protected long p50;
+
+    protected long p90;
+
+    protected long p95;
+
+    protected long p99;
+
+    protected double rps;
+
+    protected double avg;
 
     protected double duration;
 

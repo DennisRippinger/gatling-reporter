@@ -24,10 +24,6 @@ import java.util.List;
  */
 public class SimulationParserV2 extends SimulationParser {
 
-    public SimulationParserV2(File file, Float apdexT) {
-        super(file, apdexT);
-    }
-
     public SimulationParserV2(File file) {
         super(file);
     }

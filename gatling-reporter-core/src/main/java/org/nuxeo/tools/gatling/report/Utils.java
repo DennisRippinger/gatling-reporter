@@ -22,52 +22,6 @@ import java.util.zip.GZIPInputStream;
 
 public class Utils {
 
-    protected static final String GZ = "gz";
-
-    public static void setBasicAuth(String user, String password) {
-        if (user == null) {
-            return;
-        }
-        Authenticator.setDefault(new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(user, password.toCharArray());
-            }
-        });
-    }
-
-    public static String getBaseUrl(String url) {
-        URL targetUrl;
-        try {
-            targetUrl = new URL(url);
-        } catch (MalformedURLException e) {
-            throw new IllegalArgumentException("Malformed URL: " + url, e);
-        }
-        return targetUrl.getProtocol() + "://" + targetUrl.getHost();
-    }
-
-    public static void download(URL src, File dest) throws IOException {
-        URLConnection conn = src.openConnection();
-        byte[] buffer = new byte[8 * 1024];
-        try (InputStream input = conn.getInputStream()) {
-            try (OutputStream output = new FileOutputStream(dest)) {
-                int bytesRead;
-                while ((bytesRead = input.read(buffer)) != -1) {
-                    output.write(buffer, 0, bytesRead);
-                }
-            }
-        }
-    }
-
-    public static String getContent(URL url) throws IOException {
-        URLConnection conn = url.openConnection();
-        StringBuilder ret = new StringBuilder();
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
-            String line;
-            while ((line = in.readLine()) != null)
-                ret.append(line);
-        }
-        return ret.toString();
-    }
 
     public static String getIdentifier(String str) {
         StringBuilder sb = new StringBuilder();
@@ -79,21 +33,8 @@ public class Utils {
     }
 
     public static Reader getReaderFor(File file) throws IOException {
-        if (GZ.equals(getFileExtension(file))) {
-            InputStream fileStream = new FileInputStream(file);
-            InputStream gzipStream = new GZIPInputStream(fileStream);
-            return new InputStreamReader(gzipStream, "UTF-8");
-        }
         return new FileReader(file);
     }
 
-    public static String getFileExtension(File file) {
-        String name = file.getName();
-        try {
-            return name.substring(name.lastIndexOf(".") + 1);
-        } catch (Exception e) {
-            return "";
-        }
-    }
 
 }

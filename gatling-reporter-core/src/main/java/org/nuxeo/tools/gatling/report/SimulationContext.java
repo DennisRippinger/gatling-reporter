@@ -93,20 +93,10 @@ public class SimulationContext {
         simStat.setStart(start);
     }
 
-    public SimulationContext setScripts(List<String> scripts) {
-        this.scripts = scripts;
-        return this;
-    }
-
     @Override
     public String toString() {
         return simStat.toString() + "\n"
                 + getRequests().stream().map(RequestStat::toString).collect(Collectors.joining("\n"));
-    }
-
-    public SimulationContext setMaxUsers(int maxUsers) {
-        this.maxUsers = maxUsers;
-        return this;
     }
 
     public void addUser(String scenario) {
