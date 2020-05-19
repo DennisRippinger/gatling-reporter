@@ -48,7 +48,7 @@ These can then communicate with whatever DB or service used within an organizati
 The plugin itself only calculates the SimulationContext, additional dependencies that use a
 [ServiceLoader](https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html) can then extend the plugin and
 bring their dependencies.
-For example, see
+For example, see the [CsvExporter](https://github.com/DennisRippinger/gatling-reporter/blob/master/gatling-reporter-csv-exporter/src/main/java/de/drippinger/gatling/CsvExporter.java).
 
 ```java
 public class CsvExporter implements Exporter {
@@ -72,3 +72,5 @@ public class CsvExporter implements Exporter {
 }
 ```
 To create your own Exporter create a new project or module within your project with one class like the one above.
+This module needs to be available in your local .m2 folder or within your organisations nexus or alike.
+
