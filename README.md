@@ -32,13 +32,13 @@ These can then communicate with whatever DB or service used within an organizati
     <plugin>
         <groupId>de.drippinger.gatling</groupId>
         <artifactId>gatling-reporter</artifactId>
-        <version>${gatling-reporter.version}</version>
+        <version>0.1</version>
         <dependencies>
             <!-- Example -->
             <dependency>
                 <groupId>de.drippinger.gatling</groupId>
                 <artifactId>gatling-reporter-csv-exporter</artifactId>
-                <version>${gatling-reporter.version}</version>
+                <version>0.1</version>
             </dependency>
         </dependencies>
     </plugin>
