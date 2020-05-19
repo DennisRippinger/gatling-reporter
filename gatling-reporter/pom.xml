@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>de.drippinger</groupId>
-        <artifactId>gatling-reporter</artifactId>
+        <artifactId>gatling-reporter-parent</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>gatling-reporter-mojo</artifactId>
+    <artifactId>gatling-reporter</artifactId>
     <packaging>maven-plugin</packaging>
     <name>Gatling Exporter :: Mojo</name>
 

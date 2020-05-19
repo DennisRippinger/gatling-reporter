@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.drippinger</groupId>
-    <artifactId>gatling-reporter</artifactId>
-    <version>1.0</version>
+    <artifactId>gatling-reporter-parent</artifactId>
+    <version>0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
@@ -32,8 +32,9 @@
 
     <modules>
         <module>gatling-reporter-core</module>
-        <module>gatling-reporter-mojo</module>
+        <module>gatling-reporter</module>
         <module>gatling-reporter-dynamoDbExporter</module>
+        <module>gatling-reporter-csv-exporter</module>
     </modules>
 
     <distributionManagement>
@@ -73,6 +74,11 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>de.drippinger</groupId>
                 <artifactId>gatling-reporter-core</artifactId>
                 <version>${project.version}</version>
@@ -81,11 +87,6 @@
                 <groupId>net.quux00.simplecsv</groupId>
                 <artifactId>simplecsv</artifactId>
                 <version>${simplecsv.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>${commons-io.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -190,7 +191,7 @@
                 <version>2.5.3</version>
                 <configuration>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
-                    <tagNameFormat>fakegen-@{project.version}</tagNameFormat>
+                    <tagNameFormat>gatling-exporter-@{project.version}</tagNameFormat>
                     <localCheckout>true</localCheckout>
                     <pushChanges>false</pushChanges>
                     <mavenExecutorId>forked-path</mavenExecutorId>

@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>de.drippinger</groupId>
-        <artifactId>gatling-reporter</artifactId>
+        <artifactId>gatling-reporter-parent</artifactId>
         <version>1.0</version>
     </parent>
 
@@ -13,12 +13,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>net.quux00.simplecsv</groupId>
-            <artifactId>simplecsv</artifactId>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-io</artifactId>
+            <groupId>net.quux00.simplecsv</groupId>
+            <artifactId>simplecsv</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
