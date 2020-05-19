@@ -19,23 +19,23 @@ package org.nuxeo.tools.gatling.report;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.net.URL;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestParser {
-    protected static final String SIM_SMALL_V2_1 = "/simulation-small.log";
+    protected static final String SIM_SMALL_V2_1 = "simulation-small.log";
 
-    protected static final String SIM_V2_3 = "/simulation-v2.3.log";
+    protected static final String SIM_V2_3 = "simulation-v2.3.log";
 
-    protected static final String SIM_SMALL_V3 = "/simulation-small-v3.log";
+    protected static final String SIM_SMALL_V3 = "simulation-small-v3.log";
 
-    protected static final String SIM_SMALL_V3_2 = "/simulation-small-v3.2.log";
+    protected static final String SIM_SMALL_V3_2 = "simulation-small-v3.2.log";
 
-    protected static final String SIM_SMALL_V3_3 = "/simulation-small-v3.3.log";
+    protected static final String SIM_SMALL_V3_3 = "simulation-small-v3.3.log";
 
-    protected static final String SIM_SMALL_V3_3_1 = "/simulation-v3.3.1.log";
+    protected static final String SIM_SMALL_V3_3_1 = "simulation-v3.3.1.log";
 
     @Test
     public void parseSimpleSimulationVersion21() throws Exception {
@@ -90,11 +90,30 @@ public class TestParser {
         assertThat(ret.toString()).contains("_all");
     }
 
-    protected File getResourceFile(String filename) throws FileNotFoundException {
-        if (getClass().getResource(filename) == null) {
-            throw new FileNotFoundException(filename);
+    protected File getResourceFile(String filename) {
+        return new File(Objects.requireNonNull(getResource(filename)).getFile());
+    }
+
+    public static URL getResource(String resourceName) {
+        URL url = Thread.currentThread().getContextClassLoader().getResource(resourceName);
+
+        if (url == null) {
+            url = TestParser.class.getClassLoader().getResource(resourceName);
         }
-        return new File(Objects.requireNonNull(getClass().getResource(filename)).getFile());
+
+        if (url == null) {
+            ClassLoader cl = TestParser.class.getClassLoader();
+
+            if (cl != null) {
+                url = cl.getResource(resourceName);
+            }
+        }
+
+        if ((url == null) && (resourceName != null) && ((resourceName.length() == 0) || (resourceName.charAt(0) != '/'))) {
+            return getResource('/' + resourceName);
+        }
+
+        return url;
     }
 
 }
