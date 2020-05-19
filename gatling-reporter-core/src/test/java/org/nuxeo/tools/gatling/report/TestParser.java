@@ -84,15 +84,6 @@ public class TestParser {
     }
 
     @Test
-    public void parseSimpleSimulationVersion32() throws Exception {
-        SimulationContext ret = ParserFactory.getParser(getRessourceFile(SIM_V3_2_GZ)).parse();
-        // System.out.println(ret);
-        assertThat(ret.getSimulationName()).isEqualTo("sim50bench");
-        assertThat(ret.getSimStat().getCount()).isEqualTo(16095);
-        assertThat(ret.toString()).contains("_all");
-    }
-
-    @Test
     public void parseSimpleSimulationVersion331() throws Exception {
         SimulationContext ret = ParserFactory.getParser(getRessourceFile(SIM_SMALL_V3_3_1)).parse();
         // System.out.println(ret);
