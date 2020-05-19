@@ -14,6 +14,7 @@
 
     <properties>
         <aws-java-sdk-bom.version>1.11.777</aws-java-sdk-bom.version>
+        <mapstruct.version>1.3.1.Final</mapstruct.version>
         <org.eclipse.jgit.version>5.7.0.202003110725-r</org.eclipse.jgit.version>
     </properties>
 
@@ -50,6 +51,16 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${mapstruct.version}</version>
         </dependency>
     </dependencies>
 </project>

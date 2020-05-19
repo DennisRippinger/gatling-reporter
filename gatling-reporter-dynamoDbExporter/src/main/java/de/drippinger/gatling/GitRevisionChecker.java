@@ -6,6 +6,9 @@ import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 
 import java.io.IOException;
 
+/**
+ * Reads the current revision of the underlying repository.
+ */
 public final class GitRevisionChecker {
 
     protected static final int GIT_ABBREVIATION_LENGTH = 8;
@@ -23,7 +26,7 @@ public final class GitRevisionChecker {
             ObjectId head = repository.resolve("HEAD");
             return head.abbreviate(GIT_ABBREVIATION_LENGTH).name();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new ExporterException("Could not get current revision with Jgit", e);
         }
     }
 
