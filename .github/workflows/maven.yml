@@ -19,4 +19,6 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn -B package javadoc:javadoc jacoco:report coveralls:report --file pom.xml -DrepoToken=${{ secrets.COVERALLS_REPO_TOKEN }}
+      run: mvn -B package javadoc:javadoc jacoco:report --file pom.xml
+    - name: Codecov
+      run: bash <(curl -s https://codecov.io/bash)
