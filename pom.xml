@@ -73,7 +73,7 @@
         <maven-plugin-api.version>3.6.3</maven-plugin-api.version>
         <maven-project.version>2.2.1</maven-project.version>
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
-        <simplecsv.version>2.0</simplecsv.version>
+        <simplecsv.version>2.1</simplecsv.version>
         <sortpom-maven-plugin.version>2.10.0</sortpom-maven-plugin.version>
     </properties>
 
