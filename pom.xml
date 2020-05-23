@@ -63,7 +63,7 @@
 
         <assertj-core.version>3.16.1</assertj-core.version>
         <commons-io.version>2.6</commons-io.version>
-        <commons-math3.version>3.0</commons-math3.version>
+        <commons-math3.version>3.6.1</commons-math3.version>
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
         <junit-jupiter.version>5.6.2</junit-jupiter.version>
