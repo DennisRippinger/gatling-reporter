@@ -1,0 +1,29 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "04:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: com.amazonaws:aws-java-sdk-bom
+    versions:
+    - 1.11.930
+    - 1.11.946
+    - 1.11.964
+  - dependency-name: org.assertj:assertj-core
+    versions:
+    - 3.18.1
+  - dependency-name: org.mapstruct:mapstruct-processor
+    versions:
+    - 1.4.1.Final
+  - dependency-name: org.mapstruct:mapstruct
+    versions:
+    - 1.4.1.Final
+  - dependency-name: org.junit.jupiter:junit-jupiter
+    versions:
+    - 5.7.0
+  - dependency-name: com.github.ekryd.sortpom:sortpom-maven-plugin
+    versions:
+    - 2.12.0
