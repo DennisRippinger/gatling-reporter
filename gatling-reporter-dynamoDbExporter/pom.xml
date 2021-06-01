@@ -12,7 +12,7 @@
     <name>Gatling Exporter :: Dynamo DB Exporter</name>
 
     <properties>
-        <aws-java-sdk-bom.version>1.11.788</aws-java-sdk-bom.version>
+        <aws-java-sdk-bom.version>1.11.1030</aws-java-sdk-bom.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <org.eclipse.jgit.version>5.10.0.202012080955-r</org.eclipse.jgit.version>
     </properties>
