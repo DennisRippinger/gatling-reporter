@@ -62,7 +62,7 @@
         <?SORTPOM RESUME?>
 
         <assertj-core.version>3.19.0</assertj-core.version>
-        <commons-io.version>2.8.0</commons-io.version>
+        <commons-io.version>2.9.0</commons-io.version>
         <commons-math3.version>3.6.1</commons-math3.version>
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
