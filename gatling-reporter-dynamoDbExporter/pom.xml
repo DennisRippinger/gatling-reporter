@@ -14,7 +14,7 @@
     <properties>
         <aws-java-sdk-bom.version>1.11.788</aws-java-sdk-bom.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
-        <org.eclipse.jgit.version>5.10.0.202012080955-r</org.eclipse.jgit.version>
+        <org.eclipse.jgit.version>5.12.0.202106070339-r</org.eclipse.jgit.version>
     </properties>
 
     <dependencyManagement>
